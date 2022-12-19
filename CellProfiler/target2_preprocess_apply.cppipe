@@ -1,0 +1,231 @@
+CellProfiler Pipeline: http://www.cellprofiler.org
+Version:5
+DateRevision:407
+GitHash:
+ModuleCount:11
+HasImagePlaneDetails:False
+
+LoadData:[module_num:1|svn_version:'Unknown'|variable_revision_number:6|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Input data file location:Elsewhere...|/
+    Name of the file:Analysis_TESTFILE.csv
+    Load images based on this data?:Yes
+    Base image location:Elsewhere...|/root/
+    Process just a range of rows?:No
+    Rows to process:3457,6912
+    Group images by metadata?:No
+    Select metadata tags for grouping:Plate,Well,Field
+    Rescale intensities?:Yes
+
+CorrectIlluminationApply:[module_num:2|svn_version:'Unknown'|variable_revision_number:5|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:OrigDNA
+    Name the output image:DNA
+    Select the illumination function:IllumDNA
+    Select how the illumination function is applied:Divide
+    Select the input image:OrigER
+    Name the output image:ER
+    Select the illumination function:IllumER
+    Select how the illumination function is applied:Divide
+    Select the input image:OrigAGP
+    Name the output image:AGP
+    Select the illumination function:IllumAGP
+    Select how the illumination function is applied:Divide
+    Select the input image:OrigMito
+    Name the output image:Mito
+    Select the illumination function:IllumMito
+    Select how the illumination function is applied:Divide
+    Select the input image:OrigBrightfield
+    Name the output image:Brightfield
+    Select the illumination function:IllumBrightfield
+    Select how the illumination function is applied:Divide
+    Select the input image:OrigRNA
+    Name the output image:RNA
+    Select the illumination function:IllumRNA
+    Select how the illumination function is applied:Divide
+    Select the input image:OrigBrightfield_L
+    Name the output image:BFLow
+    Select the illumination function:IllumBrightfield_L
+    Select how the illumination function is applied:Divide
+    Select the input image:OrigBrightfield_H
+    Name the output image:BFHigh
+    Select the illumination function:IllumBrightfield_H
+    Select how the illumination function is applied:Divide
+    Set output image values less than 0 equal to 0?:Yes
+    Set output image values greater than 1 equal to 1?:Yes
+
+Resize:[module_num:3|svn_version:'Unknown'|variable_revision_number:4|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:DNA
+    Name the output image:ResizeDNA
+    Resizing method:Resize by specifying desired final dimensions
+    Resizing factor:0.5
+    Width of the final image:512
+    Height of the final image:512
+    Interpolation method:Bicubic
+    Method to specify the dimensions:Manual
+    Select the image with the desired dimensions:None
+    Additional image count:7
+    Select the additional image?:ER
+    Name the output image:ResizeER
+    Select the additional image?:RNA
+    Name the output image:ResizeRNA
+    Select the additional image?:AGP
+    Name the output image:ResizeAGP
+    Select the additional image?:Mito
+    Name the output image:ResizeMito
+    Select the additional image?:BFLow
+    Name the output image:ResizeBFLow
+    Select the additional image?:Brightfield
+    Name the output image:ResizeBrightfield
+    Select the additional image?:BFHigh
+    Name the output image:ResizeBFHigh
+
+SaveImages:[module_num:4|svn_version:'Unknown'|variable_revision_number:15|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:ResizeDNA
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:OrigDNA
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:_resize
+    Saved file format:tiff
+    Output file location:Elsewhere...|/
+    Image bit depth:16-bit integer
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...|
+    How to save the series:T (Time)
+
+SaveImages:[module_num:5|svn_version:'Unknown'|variable_revision_number:15|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:ResizeER
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:OrigER
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:_resize
+    Saved file format:tiff
+    Output file location:Elsewhere...|/
+    Image bit depth:16-bit integer
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...|
+    How to save the series:T (Time)
+
+SaveImages:[module_num:6|svn_version:'Unknown'|variable_revision_number:15|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:ResizeRNA
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:OrigRNA
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:_resize
+    Saved file format:tiff
+    Output file location:Elsewhere...|/
+    Image bit depth:16-bit integer
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...|
+    How to save the series:T (Time)
+
+SaveImages:[module_num:7|svn_version:'Unknown'|variable_revision_number:15|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:ResizeAGP
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:OrigAGP
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:_resize
+    Saved file format:tiff
+    Output file location:Elsewhere...|/
+    Image bit depth:16-bit integer
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...|
+    How to save the series:T (Time)
+
+SaveImages:[module_num:8|svn_version:'Unknown'|variable_revision_number:15|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:ResizeMito
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:OrigMito
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:_resize
+    Saved file format:tiff
+    Output file location:Elsewhere...|/
+    Image bit depth:16-bit integer
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...|
+    How to save the series:T (Time)
+
+SaveImages:[module_num:9|svn_version:'Unknown'|variable_revision_number:15|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:ResizeBFLow
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:OrigBrightfield_L
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:_resize
+    Saved file format:tiff
+    Output file location:Elsewhere...|/
+    Image bit depth:16-bit integer
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...|
+    How to save the series:T (Time)
+
+SaveImages:[module_num:10|svn_version:'Unknown'|variable_revision_number:15|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:ResizeBrightfield
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:OrigBrightfield
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:_resize
+    Saved file format:tiff
+    Output file location:Elsewhere...|/
+    Image bit depth:16-bit integer
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...|
+    How to save the series:T (Time)
+
+SaveImages:[module_num:11|svn_version:'Unknown'|variable_revision_number:15|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:ResizeBFHigh
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:OrigBrightfield_H
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:_resize
+    Saved file format:tiff
+    Output file location:Elsewhere...|/
+    Image bit depth:16-bit integer
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...|
+    How to save the series:T (Time)
