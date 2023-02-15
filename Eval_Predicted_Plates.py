@@ -12,8 +12,10 @@ from skimage.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 from scipy.spatial.distance import cosine
 
+from sklearn.metrics.pairwise import cosine_similarity
+
 plate = "Plate_B"
-model = "AdaGN-None_CG-None"
+model = "AdaGN-Target_CG-None"#_unlabelled"
 
 # Ground Truth Plate
 GT_dir = f"/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/{plate}/Ground_Truth/"
@@ -23,19 +25,27 @@ Predicted_dir = f"/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-
 Feature_path = f"/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/{plate}/Combined_standardized_featureselect_{model}/"
 
 
+
+#Combined_standardized_featureselect_AdaGN-None_CG-None
+#Combined_standardized_featureselect_AdaGN-Pert_CG-None
+#Combined_standardized_featureselect_AdaGN-Pert_CG-None_unlabelled
+#Combined_standardized_featureselect_AdaGN-Target_CG-None <<<<<<<<<<<<<<<<<<<<<<<<< don't have this yet, have re-run
+#Combined_standardized_featureselect_AdaGN-Target_CG-None_unlabelled
+
+
+
+##### TABLE 1: Image metrics ######
+
+# FID
 #
-####### TABLE 1: Image metrics ######
+# run:
+# python -m pytorch_fid "/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/Plate_A/Ground_Truth/" "/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/Plate_A/AdaGN-Pert_CG-None/"
 #
-## FID
+# got 3.9552 for batch A (None_None)
+# got 3.1296 for batch B (None_None)
+# got 6.0277 for batch B (Batch_None)
 #
-## run:
-## python -m pytorch_fid "/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/Plate_A/Ground_Truth/" "/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/Plate_A/AdaGN-None_CG-None/"
-#
-## got 3.9552 for batch A (None_None)
-## got 3.1296 for batch B (None_None)
-## got 6.0277 for batch B (Batch_None)
-#
-## SSIM
+##SSIM
 #def SSIM_function(prediction, ground_truth):
 #    return ssim(prediction, ground_truth)
 #
@@ -130,20 +140,6 @@ Feature_path = f"/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-M
 #print(df_metrics_std)
 #df_metrics_std.to_csv(f"/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/{plate}/metrics_std_{model}.csv")
 
-# Plate A None None
-#0.804302599
-#0.381236068
-#0.377935032
-#0.329073681
-#
-# Plate B None None
-#0.782548044
-#0.31802082
-#0.422105039
-#0.346992251
-
-
-
 
 
 ###### TABLE 2: Feature Evaluation ######
@@ -232,7 +228,7 @@ def NSC_match_GT(feats):
               count += 1
           else:
               count += 0         
-      return a, count/len(a)
+      return a, count#/len(a)
   
     
 def NSC_match_Pred(feats):
@@ -251,7 +247,53 @@ def NSC_match_Pred(feats):
               count += 1
           else:
               count += 0
-      return a, count/len(a)
+      return a, count#/len(a)
+  
+    
+def top5_NSC_match_Pred(feats):
+      Pred_All_feats = feats[~feats["Metadata_Plate"].str.contains("Pred_")]
+      Pred_All_feats = Pred_All_feats.reset_index(drop=True)
+      Pred_All_feats_values = Pred_All_feats.iloc[:,6:]
+      Pred_All_feats_values = Pred_All_feats_values.reset_index(drop=True)
+      Pred_All_feats["predicted_target"] = None
+      
+      list_of_top_5 = find_nearest_neighbors(Pred_All_feats_values, n=5)
+#      print(list_of_top_5)
+      count = 0
+      for i, row in Pred_All_feats_values.iterrows():
+#          print(i)
+          indexes = list_of_top_5[i]
+          orig_target = Pred_All_feats.iloc[i,:]
+          orig_target = orig_target["target"]
+          for j in indexes:
+              
+#              print(j)
+              a_temp = Pred_All_feats.iloc[j,:]
+              pred_target = a_temp["target"]
+              if orig_target == pred_target:
+                  count += 1
+              else:
+                  count += 0
+#          predicted_class = #classify_1nn(Pred_All_feats_values, Pred_All_feats, i)
+#          Pred_All_feats.loc[i, "predicted_target"] = predicted_class
+#          a = Pred_All_feats[["target", "predicted_target"]]      
+      
+#      count = 0
+#      for i, row in a.iterrows():
+#          if row["target"] == row["predicted_target"]:
+#              count += 1
+#          else:
+#              count += 0
+      return count#/len(a)
+
+
+def find_nearest_neighbors(df, n=5):
+    cosine_similarities = cosine_similarity(df)
+    nearest_neighbors = []
+    for i in range(len(cosine_similarities)):
+        closest = cosine_similarities[i].argsort()[-n-1:-1][::-1]
+        nearest_neighbors.append(closest)
+    return nearest_neighbors
 
 
 # Praveen Metric:search GT space for a match using the predicted actives (only)
@@ -295,15 +337,16 @@ def Praveen_Function(feats):
               count += 1
           else:
               count += 0
-    return a, count/len(a)
+    return a, count#/len(a)
 
 
+test_feature = Active_feats # All_feats
 
 print("Mean feature correlation between pred and GT")
-print(Calculate_Feature_Correlation(All_feats))
+print(Calculate_Feature_Correlation(test_feature))
 
-GT_All_feats = All_feats[~All_feats["Metadata_Plate"].str.contains("Pred_")]
-Pred_All_feats = All_feats[All_feats["Metadata_Plate"].str.contains("Pred_")]
+GT_All_feats = test_feature[~test_feature["Metadata_Plate"].str.contains("Pred_")]
+Pred_All_feats = test_feature[test_feature["Metadata_Plate"].str.contains("Pred_")]
 
 print("GT mean dist to matching target")
 print(Mean_Cosine_Distance_to_matching_target(GT_All_feats))
@@ -311,12 +354,21 @@ print(Mean_Cosine_Distance_to_matching_target(GT_All_feats))
 print("Prediction mean dist to matching target")
 print(Mean_Cosine_Distance_to_matching_target(Pred_All_feats))
 
-print(NSC_match_GT(Active_feats))
-print(NSC_match_Pred(Active_feats))
+print('top 5')
+print(top5_NSC_match_Pred(test_feature))
 
-print(Praveen_Function(Active_feats))
+print('1NN gt vs pred')
+print(NSC_match_GT(test_feature))
+print(NSC_match_Pred(test_feature))
 
-###### Appendix: ######
+
+print('std of data')
+print()
+
+
+#print(Praveen_Function(Active_feats))
+
+####### Appendix: ######
 
 
 # Create Feature Correlation Matrix
@@ -329,16 +381,16 @@ print(Praveen_Function(Active_feats))
 
 
 
-
-
+#
+#
 ### This calculates the correlation between the shared selected features in plates A and B (GT)
 ### We can also calculate the correlation between predicted A and predicted B (two completely different models to compare reproducibility
 #
 #GT_all_A = pd.read_csv(f"/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/Plate_A/Combined_standardized_featureselect_{model}.csv")
 #GT_all_B = pd.read_csv(f"/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/Plate_B/Combined_standardized_featureselect_{model}.csv")
 #
-#GT_All_feats_A = GT_all_A[GT_all_A["Metadata_Plate"].str.contains("Pred_")]
-#GT_All_feats_B = GT_all_B[GT_all_B["Metadata_Plate"].str.contains("Pred_")]
+#GT_All_feats_A = GT_all_A[~GT_all_A["Metadata_Plate"].str.contains("Pred_")]
+#GT_All_feats_B = GT_all_B[~GT_all_B["Metadata_Plate"].str.contains("Pred_")]
 #
 #GT_All_feats_A = GT_All_feats_A.iloc[:,5:]
 #GT_All_feats_A = GT_All_feats_A.reset_index(drop=True)

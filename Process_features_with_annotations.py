@@ -6,8 +6,8 @@ import pandas as pd
 plate_list = 1086292884#1086293492#{"1053597936","1053599503","1053600674", "1086289686", "1086292037", 
               #"1086292389", "1086292884", "1086293133", "1086293492", "1086293911"}
 
-plate = "Plate_B"
-model = "AdaGN-None_CG-None"
+plate = "Plate_A"
+model = "AdaGN-Target_CG-None"
 
 #Plate A = 1086293492
 #Plate B = 1086292884
