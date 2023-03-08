@@ -27,16 +27,16 @@ class Network(BaseNetwork):
         self.beta_schedule = beta_schedule
         
 #        self.args = create_argparser().parse_args()
-        self.classifier = create_classifier(image_size=512,
-        classifier_use_fp16=False,
-        classifier_width=128,
-        classifier_depth=2,
-        classifier_attention_resolutions="32,16,8",  # 16
-        classifier_use_scale_shift_norm=True,  # False
-        classifier_resblock_updown=True,  # False
-        classifier_pool="attention")#**args_to_dict(self.args, classifier_defaults().keys()))
-        self.classifier.load_state_dict(torch.load("/scratch/kjtm071/openai-2023-02-09-18-11-21-921908/model000500.pt"))#self.args.classifier_path))
-        self.classifier.eval()
+#        self.classifier = create_classifier(image_size=512,
+#        classifier_use_fp16=False,
+#        classifier_width=128,
+#        classifier_depth=2,
+#        classifier_attention_resolutions="32,16,8",  # 16
+#        classifier_use_scale_shift_norm=True,  # False
+#        classifier_resblock_updown=True,  # False
+#        classifier_pool="attention")#**args_to_dict(self.args, classifier_defaults().keys()))
+#        self.classifier.load_state_dict(torch.load("/scratch/kjtm071/openai-2023-02-15-21-38-29-932241/model000590.pt"))#self.args.classifier_path))
+#        self.classifier.eval()
 
     def set_loss(self, loss_fn):
         self.loss_fn = loss_fn
@@ -88,12 +88,12 @@ class Network(BaseNetwork):
         posterior_log_variance_clipped = extract(self.posterior_log_variance_clipped, t, y_t.shape)
         
        
-#        discard, gradient_5ch = gradient.split(split_size=[3,5], dim=1)
+        #discard, gradient_5ch = gradient.split(split_size=[3,5], dim=1)
         
         posterior_mean = (
             extract(self.posterior_mean_coef1, t, y_t.shape) * y_0_hat +
-            extract(self.posterior_mean_coef2, t, y_t.shape) * y_t +
-            posterior_log_variance_clipped*gradient*classifier_scale # classifier_scale=1     # classifier guidance here defined by cond_fn in openai implementation
+            extract(self.posterior_mean_coef2, t, y_t.shape) * y_t #+
+            #posterior_log_variance_clipped*gradient_5ch*classifier_scale # classifier_scale=1     # classifier guidance here defined by cond_fn in openai implementation
         )
         
 #        print('nice3_m8')
@@ -142,7 +142,7 @@ class Network(BaseNetwork):
         for i in tqdm(reversed(range(0, self.num_timesteps)), desc='sampling loop time step', total=self.num_timesteps):
             t = torch.full((b,), i, device=y_cond.device, dtype=torch.long)
 #            print(t)
-            gradient = self.cond_fn(y_cond, ret_arr, t,y = label)
+            gradient = 0#self.cond_fn(y_cond, ret_arr, t,y = label)
 #            print(gradient)
 #            print(gradient.shape)
             y_t = self.p_sample(y_t, t, label, gradient=gradient, classifier_scale=classifier_scale, y_cond=y_cond)

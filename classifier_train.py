@@ -86,7 +86,7 @@ def main():
 #        self.batch_size = len(data['path'])
 #        
     logger.log("creating data loader...")
-    data = load_data(data_dir="/projects/img/GAN_CP/PAPER_3/src/target2_SET_A_train_actives.csv",
+    data = load_data(data_dir="/projects/img/GAN_CP/PAPER_3/src/target2_SET_C_train_actives.csv",
                  batch_size = 8,
                      )
 #    load_data(
@@ -263,7 +263,7 @@ def create_argparser():
         resume_checkpoint="",
         log_interval=10,
         eval_interval=10,
-        save_interval=50,
+        save_interval=10,
     )
     defaults.update(classifier_and_diffusion_defaults())
     parser = argparse.ArgumentParser()

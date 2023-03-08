@@ -250,7 +250,7 @@ class Palette(BaseModel):
 #                print(self.gt_image.shape)
 #                print(self.sample_num)
                 self.output, self.visuals = self.netG.restoration(self.cond_image, self.weak_label, #gradient=self.cond_grad
-                      classifier_scale = 10, y_t=None, y_0=self.gt_image, mask=None, sample_num=1)
+                      classifier_scale = 1, y_t=None, y_0=self.gt_image, mask=None, sample_num=1)
 #                    else:
 #                        self.output, self.visuals = self.netG.restoration(self.cond_image, sample_num=self.sample_num)##############
                 print(self.output.shape)

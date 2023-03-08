@@ -14,7 +14,7 @@
 
         "checkpoint": "checkpoint",
 			// null//
-        "resume_state": "/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/experiments/train_Target2_230209_164641/checkpoint/46" 
+        "resume_state": "/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/experiments/train_Target2_230214_183347/checkpoint/66" 
     },
 
 
@@ -25,7 +25,7 @@
             "which_dataset": {  
                 "name": ["data.dataset", "Target2Dataset"], 
                 "args":{ 
-                    "path10": "/projects/img/GAN_CP/PAPER_3/src/target2_SET_A_train_actives.csv"                  
+                    "path10": "/projects/img/GAN_CP/PAPER_3/src/target2_SET_B_train_actives.csv"                  
 
                 } 
 
@@ -67,7 +67,7 @@
             "which_dataset": {  
                 "name": ["data.dataset", "Target2Dataset_test"],//"Target2Dataset_test", 
                 "args":{ 
-                    "path10": "/projects/img/GAN_CP/PAPER_3/src/target2_SET_A_test_actives.csv"                  
+                    "path10": "/projects/img/GAN_CP/PAPER_3/src/target2_SET_B_test_actives.csv"                  
 
                 } 
 
@@ -166,7 +166,7 @@
 
                         "image_size": 512,
 			
-			"num_classes": 118 //59 //146 //10 //291 // // // // 59 // 118
+			"num_classes": 118 // 59 //146 //10 //291 // // // // 59 // 118
 
                     },
 

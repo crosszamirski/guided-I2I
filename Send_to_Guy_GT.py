@@ -10,35 +10,54 @@ import os
 import shutil
 
 
-# Set the directory you want to start from
-rootDir = '/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/Actives_Plate_B/Ground_Truth/'#experiments/test_Target2_230223_220323/results/test/0/'
-
-#rootDir = '/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/GT-files/'
-
-# Create a new directory to move the files to
-destDir = '/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/FID_folder/Ground_Truth/'
-#if not os.path.exists(destDir):
-#    os.mkdir(destDir)
 
 
-def standardize_image(image_in,pixel_cutoff):
-        image_in = np.array(image_in)
-#        print(image_in)
-        image_in = image_in.astype('float32')
-        means = image_in.mean(dtype='float64')
-        stds = image_in.std(dtype='float64')
-#        print('Means: %s, Stds: %s' % (means, stds))
-        # per-channel standardization of pixels
-        image_in = (image_in - means) / stds
-#        # confirm it had the desired effect
-#        means = image_in.mean(axis=(0,1), dtype='float64')
-#        stds = image_in.std(axis=(0,1), dtype='float64')
-#        print('Means: %s, Stds: %s' % (means, stds))      
-        image_in[image_in > pixel_cutoff] = pixel_cutoff
-        image_in[image_in < -pixel_cutoff] = -pixel_cutoff
-        image_in = np.array(image_in)
-        return(image_in)
+source_folder = '/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/Plate_A/Ground_Truth/'
+destination_folder = '/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/Actives_Plate_C/Ground_Truth/'
+matching_folder = '/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/Actives_Plate_A/AdaGN_None_CG_None/'
 
+
+
+# Get a list of all the files in the matching folder
+matching_files = os.listdir(matching_folder)
+
+# Loop through all the files in the source folder
+for file in os.listdir(source_folder):
+    # Check if the filename matches any of the filenames in the matching folder
+    if file in matching_files:
+        # If it does, copy the file from the source folder to the destination folder
+        shutil.copy(os.path.join(source_folder, file), os.path.join(destination_folder, file))
+
+#
+## Set the directory you want to start from
+#rootDir = '/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/experiments/test_Target2_230215_154152/results/test/0/'
+#
+##rootDir = '/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/GT-files/'
+#
+## Create a new directory to move the files to
+#destDir = '/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/Actives_Plate_B/AdaGN_Pert_CG_None/'
+##if not os.path.exists(destDir):
+##    os.mkdir(destDir)
+#
+#
+#def standardize_image(image_in,pixel_cutoff):
+#        image_in = np.array(image_in)
+##        print(image_in)
+#        image_in = image_in.astype('float32')
+#        means = image_in.mean(dtype='float64')
+#        stds = image_in.std(dtype='float64')
+##        print('Means: %s, Stds: %s' % (means, stds))
+#        # per-channel standardization of pixels
+#        image_in = (image_in - means) / stds
+##        # confirm it had the desired effect
+##        means = image_in.mean(axis=(0,1), dtype='float64')
+##        stds = image_in.std(axis=(0,1), dtype='float64')
+##        print('Means: %s, Stds: %s' % (means, stds))      
+#        image_in[image_in > pixel_cutoff] = pixel_cutoff
+#        image_in[image_in < -pixel_cutoff] = -pixel_cutoff
+#        image_in = np.array(image_in)
+#        return(image_in)
+#
 
 
 ## Loop through all the files in the starting directory
@@ -50,16 +69,16 @@ def standardize_image(image_in,pixel_cutoff):
 #            srcPath = os.path.join(dirName, fname)
 #            destPath = os.path.join(destDir, fname)
 #            # Move the file
-#            shutil.move(srcPath, destPath)
-
-for file in os.listdir(rootDir):
-    # check if the file is a .tiff image
-#    print(file)
-    # read the image
-    img = Image.open(os.path.join(rootDir, file))
-#    print(img)
-    # normalize the image to have a mean of 0 and standard deviation of 1
-    img = standardize_image(img,pixel_cutoff=15)
+##            shutil.move(srcPath, destPath)
+#
+#for file in os.listdir(rootDir):
+#    # check if the file is a .tiff image
+##    print(file)
+#    # read the image
+#    img = Image.open(os.path.join(rootDir, file))
+##    print(img)
+#    # normalize the image to have a mean of 0 and standard deviation of 1
+#    img = standardize_image(img,pixel_cutoff=15)
 #    
 #    if file.startswith('Out_'):
 #      new_name = file[4:-14]
@@ -71,17 +90,14 @@ for file in os.listdir(rootDir):
 #      new_name += channel
 #      new_name += ".tiff"
 #      print(new_name)
-    file = file[:-5]
-    file += "copy"
-    file += ".tiff"
-    cv2.imwrite(os.path.join(destDir,file),img)#, new_name), img)
-##        file_new_name = file[:-12]
-##        file_new_name += ".tiff"
-#        print(file_new_name)
-#        new_name = filename[4:-13]
-  
-  
+#      cv2.imwrite(os.path.join(destDir, new_name), img)
+###        file_new_name = file[:-12]
+###        file_new_name += ".tiff"
+##        print(file_new_name)
+##        new_name = filename[4:-13]
 #  
+#  
+##  
 ##  print(new_name)
 #  # rename the file
 #  os.rename(file_path, os.path.join(folder_path, new_name))

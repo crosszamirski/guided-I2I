@@ -5,7 +5,7 @@ from guided_diffusion import gaussian_diffusion as gd
 from guided_diffusion.respace import SpacedDiffusion, space_timesteps
 from guided_diffusion.unet import UNet, EncoderUNetModel
 
-NUM_CLASSES = 2
+NUM_CLASSES = 59
 
 
 def diffusion_defaults():
@@ -242,7 +242,7 @@ def create_classifier(
         image_size=image_size,
         in_channels=8,
         model_channels=classifier_width,
-        out_channels=291,
+        out_channels=59,
         num_res_blocks=classifier_depth,
         attention_resolutions=tuple(attention_ds),
         channel_mult=(1, 2, 4, 8),
