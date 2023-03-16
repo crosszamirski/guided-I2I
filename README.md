@@ -38,3 +38,18 @@ o If the code already had a versioning number, keep using those numbers. If the 
 
 
 • Codification of running environment: At a minimum define a requirements.txt with the direct dependencies with strictly specified versions (e.g. down to the patchlevel). This can be obtained running pip freeze on the installed virtual environment 
+
+
+
+## Citation
+If you find this work useful, please consider citing our paper:
+```
+@article{crosszamirski2023,
+  title={Class-Guided Image-to-Image Diffusion: Cell Painting from Brightfield Images with Class Labels},
+  author={Cross-Zamirski, Jan Oscar and Anand, Praveen and Williams, Guy and Mouchet, Elizabeth and Wang, Yinhai and Sch{\"o}nlieb, Carola-Bibiane},
+  journal={arXiv preprint},
+  year={2023}
+}
+
+
+
