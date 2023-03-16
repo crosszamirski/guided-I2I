@@ -1,7 +1,7 @@
 # Class-Guided Image-to-Image Diffusion
 [Paper](https://https://arxiv.org/) 
 
-This work combines [image-to-image](https://arxiv.org/abs/2111.05826) and [label guided](https://arxiv.org/abs/2105.05233) denoising diffusion probabilistic models.
+This work combines [image-to-image](https://arxiv.org/abs/2111.05826) and [label-guided](https://arxiv.org/abs/2105.05233) denoising diffusion probabilistic models.
 
 
 
