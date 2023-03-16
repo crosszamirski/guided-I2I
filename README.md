@@ -3,6 +3,7 @@
 
 This work combines [image-to-image](https://arxiv.org/abs/2111.05826) and [label-guided](https://arxiv.org/abs/2105.05233) denoising diffusion probabilistic models, and makes use the [JUMP-Target](https://github.com/jump-cellpainting/JUMP-Target) dataset.
 
+![paper_fig_1](https://user-images.githubusercontent.com/88771963/225576743-4f9f56a3-4d99-409f-8187-fe501367485c.jpg)
 
 
 o -  Description of the project 
@@ -18,6 +19,7 @@ o -  A badge defining the current Maturity Level of the project. Add the followi
 
 
 o to the top of your README.md: 
+
 
 
 o o ![Maturity level-0](https://protect-de.mimecast.com/s/d7xECXQy0PuOOxLKBsVnx1f?domain=img.shields.io)
