@@ -41,6 +41,18 @@ o If the code already had a versioning number, keep using those numbers. If the 
 
 
 
+
+## Acknowledgements
+
+This work is based upon the following projects:
+- [Janspiry/Palette-Image-to-Image-Diffusion-Models](https://github.com/Janspiry/Palette-Image-to-Image-Diffusion-Models)
+- [openai/guided-diffusion](https://github.com/openai/guided-diffusion)
+- [facebookresearch/dino](https://github.com/facebookresearch/dino)
+- [cytomining/pycytominer](https://github.com/cytomining/pycytominer)
+
+
+
+
 ## Citation
 If you find this work useful, please consider citing our paper:
 ```
