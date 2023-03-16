@@ -1,5 +1,5 @@
 # Class-Guided Image-to-Image Diffusion
-Implementation of our paper which combines image-to-image and label guided denoising diffusion probabilistic models.
+Implementation of our [paper](https://https://arxiv.org/) which combines image-to-image and label guided denoising diffusion probabilistic models.
 
 
 
