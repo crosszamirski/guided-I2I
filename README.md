@@ -42,7 +42,14 @@ This work is built upon the following projects, and uses a large amount of their
 - [Janspiry/Palette-Image-to-Image-Diffusion-Models](https://github.com/Janspiry/Palette-Image-to-Image-Diffusion-Models)
 - [openai/guided-diffusion](https://github.com/openai/guided-diffusion)
 - [facebookresearch/dino](https://github.com/facebookresearch/dino)
-- [cytomining/pycytominer](https://github.com/cytomining/pycytominer)
+
+
+## Resources
+
+- [WS-DINO](https://github.com/crosszamirski/WS-DINO)
+- [Label-free Cell Painting](https://github.com/crosszamirski/Label-free-prediction-of-Cell-Painting-from-brightfield-images)
+- [pycytominer](https://github.com/cytomining/pycytominer)
+- [JUMP-Target](https://github.com/jump-cellpainting/JUMP-Target)
 
 
 ## License
