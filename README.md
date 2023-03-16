@@ -62,6 +62,3 @@ If you find this work useful, please consider citing our paper:
   journal={arXiv preprint},
   year={2023}
 }
-
-
-
