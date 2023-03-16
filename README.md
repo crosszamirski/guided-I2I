@@ -48,7 +48,8 @@ This work is built upon the following projects, and uses a large amount of their
 - [cytomining/pycytominer](https://github.com/cytomining/pycytominer)
 
 
-
+## License
+This repository is released under the Apache 2.0 license as found in the [LICENSE](LICENSE) file.
 
 ## Citation
 If you find this work useful, please consider citing our paper:
