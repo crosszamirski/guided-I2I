@@ -1,7 +1,7 @@
 # Class-Guided Image-to-Image Diffusion
 [Paper](https://https://arxiv.org/) | [Contact](https://crosszamirski.github.io/)
 
-This work combines [image-to-image](https://arxiv.org/abs/2111.05826) and [label-guided](https://arxiv.org/abs/2105.05233) denoising diffusion probabilistic models, and makes use the [JUMP-Target](https://github.com/jump-cellpainting/JUMP-Target) dataset.
+This work combines [image-to-image](https://arxiv.org/abs/2111.05826) and [label-guided](https://arxiv.org/abs/2105.05233) denoising diffusion probabilistic models, and uses the [JUMP-Target](https://github.com/jump-cellpainting/JUMP-Target) dataset.
 
 ![github1](https://user-images.githubusercontent.com/88771963/225577111-ee89a836-c317-4242-abb9-bbdc4e05d98b.jpg)
 
