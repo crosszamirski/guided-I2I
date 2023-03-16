@@ -3,7 +3,8 @@
 
 This work combines [image-to-image](https://arxiv.org/abs/2111.05826) and [label-guided](https://arxiv.org/abs/2105.05233) denoising diffusion probabilistic models, and makes use the [JUMP-Target](https://github.com/jump-cellpainting/JUMP-Target) dataset.
 
-![paper_fig_1](https://user-images.githubusercontent.com/88771963/225576743-4f9f56a3-4d99-409f-8187-fe501367485c.jpg)
+![github1](https://user-images.githubusercontent.com/88771963/225577111-ee89a836-c317-4242-abb9-bbdc4e05d98b.jpg)
+
 
 
 o -  Description of the project 
