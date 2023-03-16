@@ -10,20 +10,11 @@ This work combines [Image-to-Image](https://arxiv.org/abs/2111.05826) and [Class
 o -  Description of the project 
 
 
-o -  Software requirements (e.g. supported platform, required dependencies) 
-
-
 o -  how to use/run the code 
 
 
-o -  A badge defining the current Maturity Level of the project. Add the following code 
-
-
-o to the top of your README.md: 
-
-
-
-o o ![Maturity level-0](https://protect-de.mimecast.com/s/d7xECXQy0PuOOxLKBsVnx1f?domain=img.shields.io)
+o -  A badge defining the current Maturity Level of the project. Add the following code to the top of your README.md: 
+ o ![Maturity level-0](https://protect-de.mimecast.com/s/d7xECXQy0PuOOxLKBsVnx1f?domain=img.shields.io)
 
 
 • Versioning 
@@ -32,8 +23,6 @@ o If the code already had a versioning number, keep using those numbers. If the 
 
 
 • Codification of running environment: At a minimum define a requirements.txt with the direct dependencies with strictly specified versions (e.g. down to the patchlevel). This can be obtained running pip freeze on the installed virtual environment 
-
-
 
 
 ## Acknowledgements
