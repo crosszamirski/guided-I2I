@@ -29,9 +29,6 @@ o o ![Maturity level-0](https://protect-de.mimecast.com/s/d7xECXQy0PuOOxLKBsVnx1
 • Include a LICENSE.md file. Apache 2.0 is recommended
 
 
-• Include an AUTHORS.md file. Should contain author(s) and corresponding author/maintainers
-
-
 • Versioning 
 
 o If the code already had a versioning number, keep using those numbers. If the code does not have a versioning scheme yet, use semantic versioning and create the “0.1.0” git tag to the imported code. This way, if the code is associated to a publication, referees and future readers of the paper can refer to the specific version that was given at publication approval time with this name for all AZ repositories. Remember to push –tags, otherwise the tag will only be created locally. Use annotated tags. 
@@ -44,7 +41,7 @@ o If the code already had a versioning number, keep using those numbers. If the 
 
 ## Acknowledgements
 
-This work is built upon the following projects:
+This work is built upon the following projects, and uses a large amount of their code:
 - [Janspiry/Palette-Image-to-Image-Diffusion-Models](https://github.com/Janspiry/Palette-Image-to-Image-Diffusion-Models)
 - [openai/guided-diffusion](https://github.com/openai/guided-diffusion)
 - [facebookresearch/dino](https://github.com/facebookresearch/dino)
