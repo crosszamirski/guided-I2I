@@ -109,20 +109,11 @@ class VisualWriter():
         names = results['name']
 #            outputs = Util.postprocess(results['result'])
         outputs = results['result']
-        print('ginny!!!!')
-#        print(outputs)
-        print(result_path)
-        
         for i in range(len(names)): 
             im_out = outputs[i].detach().numpy()
-            print('nozzer!!!')
-            print(im_out.shape)
-            print(names[i])
+
             channels = len(im_out)
-            print(channels)
             if channels == 512:
-                print('512')
-                print(im_out.shape)
                 im = im_out
                 im1 = Image.fromarray(im)
                 im1.save(f"{result_path}/{names[i]}_channel_1.tif")
@@ -130,30 +121,12 @@ class VisualWriter():
             else:
                 if channels == 9:
                     pass
-#                    for j in range(9):
-#                        for channely in range(5):
-#                            print('2')
-#                            print(im_out.shape)
-#                            print(j)
-#                            print(channely)
-#                            im = im_out[j,channely,:,:]
-#                            im1 = Image.fromarray(im)
-#                            im1.save(f"{result_path}/{names[i]}_channel_{channely}_{j}.tif")
-#                            print(f"{result_path}/{names[i]}_channel_{channely}_{j}.tif")
                 else:
                     for channel in range(channels):
-                        print('other')
-                        print(im_out.shape)
                         im = im_out[channel,:,:]
                         im1 = Image.fromarray(im)
                         im1.save(f"{result_path}/{names[i]}_channel_{channel}.tif")
                         print(f"{result_path}/{names[i]}_channel_{channel}.tif")
-#                    print('how good')
-#                    print(f"{result_path}{names[i]}_channel_{channel}.tif")
-        #                Image.fromarray(outputs[i]).save(os.path.join(result_path, names[i]))
-#    except:
-#            raise NotImplementedError('You must specify the context of name and result in save_current_results functions of model.')
-
 
     def save_images_test(self, results):
         result_path = os.path.join(self.result_dir, self.phase)
@@ -162,24 +135,15 @@ class VisualWriter():
         os.makedirs(result_path, exist_ok=True)
 
         ''' get names and corresponding images from results[OrderedDict] '''
-#        try:
+
         names = results['name']
-#            outputs = Util.postprocess(results['result'])
         outputs = results['result']
-        print('ginny!!!!')
-#        print(outputs)
-        print(result_path)
+
         
         for i in range(len(names)): 
             im_out = outputs[i].detach().numpy()
-            print('nozzer!!!')
-            print(im_out.shape)
-            print(names[i])
             channels = len(im_out)
-            print(channels)
             if channels == 512:
-                print('512')
-                print(im_out.shape)
                 im = im_out
                 im1 = Image.fromarray(im)
                 im1.save(f"{result_path}/{names[i]}_channel_1.tif")
@@ -188,28 +152,16 @@ class VisualWriter():
                 if channels == 2:
                     for j in range(2):
                         for channely in range(5):
-                            print('2')
-                            print(im_out.shape)
-                            print(j)
-                            print(channely)
                             im = im_out[j,channely,:,:]
                             im1 = Image.fromarray(im)
                             im1.save(f"{result_path}/{names[i]}_channel_{channely}_{j}.tif")
                             print(f"{result_path}/{names[i]}_channel_{channely}_{j}.tif")
                 else:
                     for channel in range(channels):
-                        print('other')
-                        print(im_out.shape)
                         im = im_out[channel,:,:]
                         im1 = Image.fromarray(im)
                         im1.save(f"{result_path}/{names[i]}_channel_{channel}.tif")
                         print(f"{result_path}/{names[i]}_channel_{channel}.tif")
-#                    print('how good')
-#                    print(f"{result_path}{names[i]}_channel_{channel}.tif")
-        #                Image.fromarray(outputs[i]).save(os.path.join(result_path, names[i]))
-#    except:
-#            raise NotImplementedError('You must specify the context of name and result in save_current_results functions of model.')
-
 
     def close(self):
         self.writer.close()
