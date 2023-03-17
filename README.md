@@ -30,17 +30,11 @@ Incorporating labels:
 
 AdaGN
 
+description coming soon
+
 CG
-(openAI classifier)
 
-
-
-• Versioning 
-
-o If the code already had a versioning number, keep using those numbers. If the code does not have a versioning scheme yet, use semantic versioning and create the “0.1.0” git tag to the imported code. This way, if the code is associated to a publication, referees and future readers of the paper can refer to the specific version that was given at publication approval time with this name for all AZ repositories. Remember to push –tags, otherwise the tag will only be created locally. Use annotated tags. 
-
-
-• Codification of running environment: At a minimum define a requirements.txt with the direct dependencies with strictly specified versions (e.g. down to the patchlevel). This can be obtained running pip freeze on the installed virtual environment 
+description coming soon
 
 
 ## Acknowledgements
