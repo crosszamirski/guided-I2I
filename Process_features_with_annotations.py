@@ -3,9 +3,7 @@ import sys
 sys.path.append('/projects/')
 import pandas as pd
 
-plate_list = 1086292884#1086293492#{"1053597936","1053599503","1053600674", "1086289686", "1086292037", 
-              #"1086292389", "1086292884", "1086293133", "1086293492", "1086293911"}
-
+plate_list = 1086292884#1086293492#
 plate = "Plate_A"
 model = "AdaGN-Target_CG-None"
 
@@ -13,11 +11,11 @@ model = "AdaGN-Target_CG-None"
 #Plate B = 1086292884
 
 
-df = pd.read_csv('/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/target2_metadata.csv')
+df = pd.read_csv('/.../target2_metadata.csv')
 df = df[df.PLATE == plate_list]
 df = df.rename(columns={"SAMPLEIDDISPLAY":"Metadata_broad_sample", "Well Id":"Metadata_Well"})
 
-df_final = pd.read_csv(f'/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/{plate}/Combined_standardized_featureselect_{model}.csv')
+df_final = pd.read_csv(f'/.../{plate}/Combined_standardized_featureselect_{model}.csv')
 
 df_master = pd.merge(df, df_final, on=['Metadata_broad_sample', 'Metadata_Well'])
 
