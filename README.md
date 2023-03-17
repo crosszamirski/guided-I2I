@@ -1,5 +1,5 @@
 # Class-Guided Image-to-Image Diffusion
-[Paper](https://https://arxiv.org/) | [Contact](https://crosszamirski.github.io/)
+[Paper](https://arxiv.org/pdf/2303.08863.pdf) | [Contact](https://crosszamirski.github.io/)
 
 This work combines [Image-to-Image](https://arxiv.org/abs/2111.05826) and [Class-Guided](https://arxiv.org/abs/2105.05233) denoising diffusion probabilistic models, and uses the [JUMP-Target-2](https://github.com/jump-cellpainting/JUMP-Target) dataset.
 
@@ -47,9 +47,12 @@ This repository is released under the Apache 2.0 license as found in the [LICENS
 ## Citation
 If you find this work useful, please consider citing our paper:
 ```
-@article{crosszamirski2023,
-  title={Class-Guided Image-to-Image Diffusion: Cell Painting from Brightfield Images with Class Labels},
-  author={Cross-Zamirski, Jan Oscar and Anand, Praveen and Williams, Guy and Mouchet, Elizabeth and Wang, Yinhai and Sch{\"o}nlieb, Carola-Bibiane},
-  journal={arXiv preprint},
-  year={2023}
+@misc{https://doi.org/10.48550/arxiv.2303.08863,
+  doi = {10.48550/ARXIV.2303.08863},
+  url = {https://arxiv.org/abs/2303.08863},
+  author = {Cross-Zamirski, Jan Oscar and Anand, Praveen and Williams, Guy and Mouchet, Elizabeth and Wang, Yinhai and Schönlieb, Carola-Bibiane},
+  title = {Class-Guided Image-to-Image Diffusion: Cell Painting from Brightfield Images with Class Labels},
+  publisher = {arXiv},
+  year = {2023},
 }
+
