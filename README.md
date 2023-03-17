@@ -1,6 +1,5 @@
-![Maturity level-0](https://img.shields.io/badge/Maturity%20Level-ML--0-red)
- 
 # Class-Guided Image-to-Image Diffusion
+![Maturity level-0](https://img.shields.io/badge/Maturity%20Level-ML--0-red)
 [Paper](https://arxiv.org/pdf/2303.08863.pdf) | [Contact](https://crosszamirski.github.io/)
 
 This work combines [Image-to-Image](https://arxiv.org/abs/2111.05826) and [Class-Guided](https://arxiv.org/abs/2105.05233) denoising diffusion probabilistic models, and uses the [JUMP-Target-2](https://github.com/jump-cellpainting/JUMP-Target) dataset.
