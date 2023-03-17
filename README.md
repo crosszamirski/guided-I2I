@@ -1,6 +1,6 @@
 # Class-Guided Image-to-Image Diffusion
 
-[Paper](https://arxiv.org/pdf/2303.08863.pdf) | [Contact](https://crosszamirski.github.io/) | ![Maturity level-0](https://img.shields.io/badge/Maturity%20Level-ML--0-red)
+[Paper](https://arxiv.org/pdf/2303.08863.pdf) | [Contact](https://crosszamirski.github.io/)
 
 This work combines [Image-to-Image](https://arxiv.org/abs/2111.05826) and [Class-Guided](https://arxiv.org/abs/2105.05233) denoising diffusion probabilistic models, and uses the [JUMP-Target-2](https://github.com/jump-cellpainting/JUMP-Target) dataset.
 
@@ -44,6 +44,8 @@ This work is built upon the following projects, and uses a large amount of their
 ## License
 This repository is released under the Apache 2.0 license as found in the [LICENSE](LICENSE) file.
 
+![Maturity level-0](https://img.shields.io/badge/Maturity%20Level-ML--0-red)
+
 ## Citation
 If you find this work useful, please consider citing our paper:
 ```
@@ -55,4 +57,5 @@ If you find this work useful, please consider citing our paper:
   publisher = {arXiv},
   year = {2023},
 }
+
 
