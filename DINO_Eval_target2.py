@@ -26,24 +26,11 @@ channels_BF = ['C06_1','C06_2','C06_3']
 
 "Set A Evaluation"
 
-
-folder_path = "/projects/img/GAN_CP/PAPER_3/Palette-Image-to-Image-Diffusion-Models-main/Plate_A/Ground_Truth/"
-
-x0train = pd.read_csv(f'/projects/img/GAN_CP/PAPER_3/src/target2_SET_A_test_general.csv')
-#x0DMSO = pd.read_csv(f'/projects/img/GAN_CP/PAPER_3/src/target2_SET1_CONTROLS.csv')
-
+folder_path = "/.../Plate_A/Ground_Truth/"
+x0train = pd.read_csv(f'/.../SET_A_test.csv')
 model_evaluating = "SETA"
-#
-#"Set 2 Evaluation"
-#
-#x0train = pd.read_csv(f'/projects/img/GAN_CP/PAPER_3/src/target2_SET2.csv')
-#x0DMSO = pd.read_csv(f'/projects/img/GAN_CP/PAPER_3/src/target2_SET2_CONTROLS.csv')
-#
-#model_evaluating = "SET2"
 
 "Parameters to set:"
-
-#channels_CP2 = ['C02','C03']
 
 channel_headers = channels_CP # channels_CP, channels_BF
 weight_type = "imagenet" #PSUEDO_WSDINO" #"imagenet" # "WSDINO"
@@ -56,7 +43,6 @@ num_classes = 145 # number of targets
 
 def extract_feature_pipeline(args, weights,channel):
     dataset_train = ReturnIndexDataset(x0train, channel)
-#    dataset_train2 = ReturnIndexDataset_DMSO(x0DMSO, channel)
     sampler = SequentialSampler(dataset_train)
     data_loader_train = torch.utils.data.DataLoader(
         dataset_train,
@@ -66,17 +52,7 @@ def extract_feature_pipeline(args, weights,channel):
         pin_memory=True,
         drop_last=True,
     )
-    
-#    sampler2 = SequentialSampler(dataset_train2)
-#    data_loader_train2 = torch.utils.data.DataLoader(
-#        dataset_train2,
-#        sampler=sampler2,
-#        batch_size=args.batch_size_per_gpu,
-#        num_workers=args.num_workers,
-#        pin_memory=True,
-#        drop_last=True,
-#    )
-    
+        
     print(f"Data loaded with {len(dataset_train)} imgs.")
 
     # ============ building network ... ============
@@ -100,11 +76,6 @@ def extract_feature_pipeline(args, weights,channel):
     print(train_features)
     print(train_features.size())
     
-#    print("Extracting features from DMSO set...")
-#    train_features2 = extract_features2(model, data_loader_train2, args.use_cuda)
-#    print(train_features2)
-#    print(train_features2.size())
-
     if args.dump_features and dist.get_rank() == 0:
         torch.save(train_features.cpu(), os.path.join(args.dump_features, f"target2_trainfeat.pth"))
         train_features_cpu = train_features.cpu()
@@ -112,7 +83,7 @@ def extract_feature_pipeline(args, weights,channel):
         df_csv = pd.DataFrame(features_np) #convert to a dataframe
         df_csv.to_csv("target2_trainfeatures.csv",index=True) #save to file
         
-    return train_features#, train_features2#, test_features, train_labels, test_labels
+    return train_features
 
 @torch.no_grad()
 def extract_features(model, data_loader, use_cuda=True, multiscale=False):
@@ -227,20 +198,6 @@ def extract_features2(model, data_loader, use_cuda=True, multiscale=False):
                 features.index_copy_(0, index_all.cpu(), torch.cat(output_l).cpu())
     return features
 
-
-#def correct_tvn(features_DMSO, features_all):
-#    DMSO_features_cpu = features_DMSO.cpu()
-#    features_DMSO_np = DMSO_features_cpu.numpy() #convert to Numpy array
-#    features_cpu = features_all.cpu()
-#    features_all_np = features_cpu.numpy() #convert to Numpy array
-#    labels = features_all_np[:,-3:]
-#    features_all_np = features_all_np[:,:-3]
-#    p = sk_PCA(n_components=384, whiten=True).fit(features_DMSO_np)
-#    features_all = p.transform(features_all_np)
-#    features_all = np.concatenate([features_all,labels], axis=1)
-#    return features_all
-
-
 def Aggregate_features_NSC(features, channel, epoch):
     features_np = features
     df = pd.DataFrame(features_np)
@@ -248,9 +205,7 @@ def Aggregate_features_NSC(features, channel, epoch):
     df.rename(columns={ df.columns[385]: "pert" }, inplace = True)
     df.rename(columns={ df.columns[386]: "plate" }, inplace = True)
     df = df.groupby(['pert','plate'],as_index=False).mean()
-#    print(df)
     df = df.groupby('pert').mean()
-#    print(df)
     df = df.drop("plate", axis=1)
     df['pert'] = df.index
     print(df)
@@ -266,8 +221,6 @@ def Aggregate_features_NSCB(features, channel, epoch):
     df.rename(columns={ df.columns[386]: "plate" }, inplace = True)
     df = df.groupby(['pert','plate'],as_index=False).mean()
     print(df)
-#    df = df.groupby('pert').mean()
-#    df = df.drop("plate", axis=1)
     df.to_csv(f"NSCB_features_{channel}_model_{weight_type}_epoch_{epoch}.csv",index=True) #save to file
     return df
 
@@ -278,7 +231,6 @@ def NSCB_function(features, channel, epoch):
     df = pd.DataFrame(df)
     label_df = df[["pert", "target", "plate"]]
     feature_df = df.iloc[: , :-3]
-#    feature_df = preprocessing.normalize(feature_df, norm='l2')
     feature_df = pd.DataFrame(feature_df)
     print(feature_df)
     print(label_df)
@@ -330,7 +282,6 @@ def NSC_function(features, channel, epoch):
     df = Aggregate_features_NSC(features, channel, epoch)
     label_df = df[["pert", "target"]]
     feature_df = df.iloc[: , :-2]
-#    feature_df = preprocessing.normalize(feature_df, norm='l2')
     feature_df = pd.DataFrame(feature_df)
     print(feature_df)
     print(label_df)
@@ -383,9 +334,7 @@ class ReturnIndexDataset(Dataset):
         self.y_target = path0['Unique_Target']
         self.y_pert = path0['Unique_Pert']
         self.y_plate = path0['Unique_Plate']
-           
-#        self.aug0 = albumentations.Compose([
-#        albumentations.Normalize(mean=[0],std=[1],max_pixel_value=pixel_cutoff, always_apply=True),])
+        
         self.aug1 = albumentations.Compose([
         albumentations.augmentations.crops.transforms.Crop(x_min=32, y_min=32, x_max=256, y_max=256, always_apply=True),])
         self.aug2 = albumentations.Compose([
@@ -401,13 +350,7 @@ class ReturnIndexDataset(Dataset):
         image_in = image_in.astype('float32')
         means = image_in.mean(axis=(0,1), dtype='float64')
         stds = image_in.std(axis=(0,1), dtype='float64')
-#        print('Means: %s, Stds: %s' % (means, stds))
-        # per-channel standardization of pixels
-        image_in = (image_in - means) / stds
-#        # confirm it had the desired effect
-#        means = image_in.mean(axis=(0,1), dtype='float64')
-#        stds = image_in.std(axis=(0,1), dtype='float64')
-#        print('Means: %s, Stds: %s' % (means, stds))        
+        image_in = (image_in - means) / stds   
         image_in = np.array(image_in)
         image_in[image_in > pixel_cutoff] = pixel_cutoff
         image_in[image_in < -pixel_cutoff] = -pixel_cutoff
@@ -418,8 +361,6 @@ class ReturnIndexDataset(Dataset):
         return (len(self.X0))  
         
     def __getitem__(self,idx):
-#        print('path')
-#        print(self.X0[idx])
         Aimage = Image.open(self.X0[idx])
         Aimage = self.standardize_image(Aimage)
         image_0 = Aimage.astype(np.float32)
@@ -468,8 +409,6 @@ class ReturnIndexDataset_DMSO(Dataset):
     def __init__(self, path0, channel):
         
         self.X0 = path0[channel]                   
-#        self.aug0 = albumentations.Compose([
-#        albumentations.Normalize(mean=[0],std=[1],max_pixel_value=pixel_cutoff, always_apply=True),])
         self.aug1 = albumentations.Compose([
         albumentations.augmentations.crops.transforms.Crop(x_min=32, y_min=32, x_max=256, y_max=256, always_apply=True),])
         self.aug2 = albumentations.Compose([
@@ -485,13 +424,7 @@ class ReturnIndexDataset_DMSO(Dataset):
         image_in = image_in.astype('float32')
         means = image_in.mean(axis=(0,1), dtype='float64')
         stds = image_in.std(axis=(0,1), dtype='float64')
-#        print('Means: %s, Stds: %s' % (means, stds))
-        # per-channel standardization of pixels
-        image_in = (image_in - means) / stds
-#        # confirm it had the desired effect
-#        means = image_in.mean(axis=(0,1), dtype='float64')
-#        stds = image_in.std(axis=(0,1), dtype='float64')
-#        print('Means: %s, Stds: %s' % (means, stds))        
+        image_in = (image_in - means) / stds    
         image_in = np.array(image_in)
         image_in[image_in > pixel_cutoff] = pixel_cutoff
         image_in[image_in < -pixel_cutoff] = -pixel_cutoff
@@ -584,7 +517,6 @@ if __name__ == '__main__':
             if weight_type == "imagenet":
                 weights = 'pretrain_full_checkpoint.pth'
             else:
-#                weights = f'{channel}_WSDINO_checkpoint{train_epoch}.pth'
                 weights = f'{channel}_PSUEDO_WSDINO_checkpoint{train_epoch}.pth'
 
 
@@ -592,31 +524,12 @@ if __name__ == '__main__':
             if utils.get_rank() == 0:
                 if args.use_cuda:
                     train_features = train_features.cuda()
-#                    DMSO_features = DMSO_features.cuda()
-            
-#            train_features = train_features#correct_tvn(DMSO_features, train_features)
-#            nscb_epoch = NSCB_function(train_features, channel, train_epoch)
-#            tally_epoch_nscb.append(nscb_epoch)
-#            print(tally_epoch_nscb)
             train_features = train_features.cpu()
             train_features = train_features.numpy()
             print(train_features)
             nsc_epoch = NSC_function(train_features, channel, train_epoch)
             df_to_save.loc[train_epoch, channel] = nsc_epoch
-#            tally_epoch_nsc.append(nsc_epoch)
             print(df_to_save)
-#            print(tally_epoch_nsc)
     df_to_save.to_csv(f"NSC_set_{model_evaluating}_model_{weight_type}_channels_{channel_headers}.csv",index=True) #save to file
     
     dist.barrier()
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
