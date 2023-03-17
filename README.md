@@ -12,7 +12,7 @@ This work combines [Image-to-Image](https://arxiv.org/abs/2111.05826) and [Class
 This is the code for the class-guided image-to-image denoising diffusion probabilistic model. In our study we train our model on a real-world dataset of microscopy images used for drug discovery, with and without incorporating metadata labels. By exploring the properties of image-to-image diffusion with relevant labels, we show that classguided image-to-image diffusion can improve the meaningful content of the reconstructed images and outperform the unguided model in useful downstream tasks.
 
 
-Training
+Training 
 
 The backbone of this implementation is branched from [Janspiry/Palette-Image-to-Image-Diffusion-Models](https://github.com/Janspiry/Palette-Image-to-Image-Diffusion-Models) and is trained in the same way. We provide our .json file "Target2.json" which contains the hyperparameters used to train our models. This will require editing to suit the requirements of your file structures and datasets.
 
@@ -25,6 +25,13 @@ Testing/inference
 ```python
 python run.py -p test -c config/Target2.json
 ```
+
+Incorporating labels:
+
+AdaGN
+
+CG
+(openAI classifier)
 
 
 
