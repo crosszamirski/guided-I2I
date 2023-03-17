@@ -17,7 +17,7 @@ sys.path.append('/projects/')
 plate = "SET_B"
 split = "test"
 
-df_master = pd.read_csv(f'/projects/img/GAN_CP/PAPER_3/src/target2_{plate}_{split}.csv')
+df_master = pd.read_csv(f'/.../target2_{plate}_{split}.csv')
 
 
 
@@ -36,4 +36,4 @@ actives = [
 # Select active subset
 df_master_actives = df_master[df_master.target.isin(actives)]
 df_master_actives = df_master_actives.reset_index(drop=True)
-df_master_actives.to_csv(f'/projects/img/GAN_CP/PAPER_3/src/target2_{plate}_{split}_actives.csv')
+df_master_actives.to_csv(f'/.../target2_{plate}_{split}_actives.csv')
