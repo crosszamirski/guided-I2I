@@ -1,3 +1,5 @@
+![Maturity level-0](https://img.shields.io/badge/Maturity%20Level-ML--0-red)
+
 # Class-Guided Image-to-Image Diffusion
 
 [Paper](https://arxiv.org/pdf/2303.08863.pdf) | [Contact](https://crosszamirski.github.io/)
@@ -44,8 +46,6 @@ This work is built upon the following projects, and uses a large amount of their
 ## License
 This repository is released under the Apache 2.0 license as found in the [LICENSE](LICENSE) file.
 
-![Maturity level-0](https://img.shields.io/badge/Maturity%20Level-ML--0-red)
-
 ## Citation
 If you find this work useful, please consider citing our paper:
 ```
@@ -57,5 +57,3 @@ If you find this work useful, please consider citing our paper:
   publisher = {arXiv},
   year = {2023},
 }
-
-
