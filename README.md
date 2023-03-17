@@ -14,7 +14,7 @@ This is the code for the class-guided image-to-image denoising diffusion probabi
 
 Training
 
-The backbone of this implementation is branched from [Janspiry/Palette-Image-to-Image-Diffusion-Models](https://github.com/Janspiry/Palette-Image-to-Image-Diffusion-Models) and is trained in the same way. We provide our .json file "Target2.json" which contains the hyperparameters used to train our models
+The backbone of this implementation is branched from [Janspiry/Palette-Image-to-Image-Diffusion-Models](https://github.com/Janspiry/Palette-Image-to-Image-Diffusion-Models) and is trained in the same way. We provide our .json file "Target2.json" which contains the hyperparameters used to train our models. This will require editing to suit the requirements of your file structures and datasets.
 
 ```python
 python run.py -p train -c config/Target2.json
