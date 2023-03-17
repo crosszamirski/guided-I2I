@@ -1,3 +1,5 @@
+![Maturity level-0](https://img.shields.io/badge/Maturity%20Level-ML--0-red)
+ 
 # Class-Guided Image-to-Image Diffusion
 [Paper](https://arxiv.org/pdf/2303.08863.pdf) | [Contact](https://crosszamirski.github.io/)
 
@@ -13,8 +15,7 @@ We introduce and implement a model which combines image-to-image and class guide
 o -  how to use/run the code 
 
 
-o -  A badge defining the current Maturity Level of the project. Add the following code to the top of your README.md: 
- o ![Maturity level-0](https://img.shields.io/badge/Maturity%20Level-ML--0-red)
+
 
 
 • Versioning 
