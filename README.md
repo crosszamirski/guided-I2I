@@ -14,8 +14,9 @@ This is the code for the class-guided image-to-image denoising diffusion probabi
 
 o -  how to use/run the code 
 
-
-
+```python
+python run.py -p train -c config/Target2.json
+```
 
 
 • Versioning 
