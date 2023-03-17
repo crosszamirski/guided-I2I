@@ -10,7 +10,7 @@ This work combines [Image-to-Image](https://arxiv.org/abs/2111.05826) and [Class
 
 
 
-We introduce and implement a model which combines image-to-image and class guided denoising diffusion probabilistic models. We train our model on a real-world dataset of microscopy images used for drug discovery, with and without incorporating metadata labels. By exploring the properties of image-to-image diffusion with relevant labels, we show that classguided image-to-image diffusion can improve the meaningful content of the reconstructed images and outperform the unguided model in useful downstream tasks.
+This is the code for the class-guided image-to-image denoising diffusion probabilistic model. In our study we train our model on a real-world dataset of microscopy images used for drug discovery, with and without incorporating metadata labels. By exploring the properties of image-to-image diffusion with relevant labels, we show that classguided image-to-image diffusion can improve the meaningful content of the reconstructed images and outperform the unguided model in useful downstream tasks.
 
 
 o -  how to use/run the code 
